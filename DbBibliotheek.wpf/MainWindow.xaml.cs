@@ -22,12 +22,42 @@ namespace DbBibliotheek.wpf
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        private void MakeTables() 
+        {
+            dtAuteur = new DataTable();
+            dtAuteur.TableName = "Auteur";
+
+            DataColumn dcAuteurID = new DataColumn();
+            dcAuteurID.ColumnName = "auteurID";
+            dcAuteurID.DataType = typeof(int);
+
+            dcAuteurID.Unique = true;
+            dtAuteur.Columns.Add(dcAuteurID);
+            dtAuteur.PrimaryKey = new DataColumn[] { dcAuteurID };
+
+
+            DataColumn dcAuteurNaam = new DataColumn();
+            dcAuteurNaam.ColumnName = "auteurNaam";
+            dcAuteurNaam.DataType = typeof(string);
+            dcAuteurNaam.MaxLength = 50;
+
+            dtAuteur.Columns.Add(dcAuteurNaam);
+        }
+
+
+
+
         public MainWindow()
         {
             InitializeComponent();
         }
+
+        DataTable dtAuteur;
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            MakeTables();
+            //FillTables();
         }
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
