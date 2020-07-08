@@ -41,16 +41,19 @@ namespace DbBibliotheek.wpf
 
 
             DataColumn dcAuteurNaam = new DataColumn();
-
-            DataColumn dcDisplayAuteur = new DataColumn("DisplayAuteur");
-            dcDisplayAuteur.Expression = "auteurNaam + '('+ auteurID +')'";
-            dtAuteur.Columns.Add(dcDisplayAuteur);
-
             dcAuteurNaam.ColumnName = "auteurNaam";
             dcAuteurNaam.DataType = typeof(string);
             dcAuteurNaam.MaxLength = 50;
-
             dtAuteur.Columns.Add(dcAuteurNaam);
+
+            //dtAuteur.Columns.Add(dcAuteurNaam) has to be written befote the 3 lines under
+            // otherwise dcDisplayAuteur cannot find dcAuteurNaam
+
+            DataColumn dcDisplayAuteur = new DataColumn("DisplayAuteur");
+            dcDisplayAuteur.Expression = "auteurNaam + ' (' + auteurID + ')'";
+            dtAuteur.Columns.Add(dcDisplayAuteur);
+
+
         }
 
         private void FillTables() 
@@ -80,6 +83,7 @@ namespace DbBibliotheek.wpf
         {
             MakeTables();
             FillTables();
+            dgAuteur.ItemsSource = dtAuteur.DefaultView;
         }
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
