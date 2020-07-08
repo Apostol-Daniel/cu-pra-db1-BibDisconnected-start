@@ -95,6 +95,11 @@ namespace DbBibliotheek.wpf
             dtBoeken.Columns.Add(dcBoekID);
             dtBoeken.PrimaryKey = new DataColumn[] { dcBoekID };
 
+            // add the rest of the book fields
+            dtBoeken.Columns.Add("Titel", typeof(string));
+            dtBoeken.Columns.Add("AuteurID", typeof(int));
+            dtBoeken.Columns.Add("UitgeverID", typeof(int));
+            dtBoeken.Columns.Add("Jaartal", typeof(int));
 
 
         }
