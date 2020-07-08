@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data;
 using System.IO;
+using System.Runtime.InteropServices;
 
 namespace DbBibliotheek.wpf
 {
@@ -127,7 +128,29 @@ namespace DbBibliotheek.wpf
             dsBoekenLijst.Tables["Uitgever"].Rows.Add(newPublisher);
         }
 
+        private void EditSourceData() 
+        {
+            cmbAuteur.Items.Clear();
+            cmbUitgever.Items.Clear();
+            ComboBoxItem itm;
+            for (int counter = 0; counter < dsBoekenLijst.Tables[0].Rows.Count; counter++) 
+            {
+                itm = new ComboBoxItem();
+                itm.Content = (dsBoekenLijst.Tables[0].Rows[counter][1]);
+                itm.Tag = (dsBoekenLijst.Tables[0].Rows[counter][0]);
+                cmbAuteur.Items.Add(itm);
+            }
+            cmbAuteur.SelectedIndex = 0;
 
+            for(int counter = 0; counter < dsBoekenLijst.Tables[1].Rows.Count;counter++) 
+            {
+                itm = new ComboBoxItem();
+                itm.Content = dsBoekenLijst.Tables[1].Rows[counter][1];
+                itm.Tag = dsBoekenLijst.Tables[1].Rows[counter][0];
+                cmbUitgever.Items.Add(itm);
+            }
+            cmbUitgever.SelectedIndex = 0;
+        }
 
 
         public MainWindow()
