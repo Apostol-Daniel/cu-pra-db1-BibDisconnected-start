@@ -55,7 +55,9 @@ namespace DbBibliotheek.wpf
 
         private void FillTables() 
         {
-            
+            AddAuteurData("Boon Louis");
+            AddAuteurData("Tuchman Barbara");
+            AddAuteurData("Cook Robin");
         }
 
         private void AddAuteurData(string naam) 
