@@ -152,6 +152,16 @@ namespace DbBibliotheek.wpf
             cmbUitgever.SelectedIndex = 0;
         }
 
+        private void AddBook(string titel, int auteurID, int uitgverID, int jaartal) 
+        {
+            DataRow newBook = dsBoekenLijst.Tables[2].NewRow();
+            newBook["Titel"] = titel;
+            newBook["AuteurID"] = auteurID;
+            newBook["UitgeverID"] = uitgverID;
+            newBook["Jaartal"] = jaartal;
+            dsBoekenLijst.Tables[2].Rows.Add(newBook);
+        }
+
 
         public MainWindow()
         {
@@ -164,6 +174,7 @@ namespace DbBibliotheek.wpf
             MakeTables();
             FillTables();
             dgAuteur.ItemsSource = dsBoekenLijst.Tables["Auteur"].DefaultView;
+            EditSourceData();
         }
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
