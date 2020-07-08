@@ -118,6 +118,13 @@ namespace DbBibliotheek.wpf
             dsBoekenLijst.Tables["Auteur"].Rows.Add(nieuweAuteur);
         }
 
+        private void AddPublisherData(string naam) 
+        {
+            DataRow newPublisher = dsBoekenLijst.Tables["Uitgever"].NewRow();
+            newPublisher["UitgeverNaam"] = naam;
+            dsBoekenLijst.Tables["Uitgever"].Rows.Add(newPublisher);
+        }
+
 
 
 
