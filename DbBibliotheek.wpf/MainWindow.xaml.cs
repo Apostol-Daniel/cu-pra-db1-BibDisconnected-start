@@ -90,6 +90,9 @@ namespace DbBibliotheek.wpf
         }
         private void btnSorteer_Click(object sender, RoutedEventArgs e)
         {
+            DataView sortedTable = new DataView(dtAuteur);
+            sortedTable.Sort = "AuteurNaam desc , AuteurID desc";
+            dgAuteur.ItemsSource = sortedTable;
         }
         private void btnFilter_Click(object sender, RoutedEventArgs e)
         {
