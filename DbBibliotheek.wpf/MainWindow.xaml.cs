@@ -102,6 +102,9 @@ namespace DbBibliotheek.wpf
         }
         private void btnToevoegen_Click(object sender, RoutedEventArgs e)
         {
+            string auteur = txtAuteur.Text.Trim();
+            AddAuteurData(auteur);
+            dgAuteur.ItemsSource = dtAuteur.DefaultView;
         }
         private void btnBoekToevoegen_Click(object sender, RoutedEventArgs e)
         {
