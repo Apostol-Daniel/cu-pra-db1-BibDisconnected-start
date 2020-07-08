@@ -199,6 +199,22 @@ namespace DbBibliotheek.wpf
         }
         private void btnBoekToevoegen_Click(object sender, RoutedEventArgs e)
         {
+            try 
+            {
+                string titel = txtTitel.Text;
+                int jaartal = int.Parse(txtJaartal.Text);
+                ComboBoxItem itm;
+                itm = (ComboBoxItem)cmbAuteur.SelectedItem;
+                int IDauteur = int.Parse(itm.Tag.ToString());
+                itm = (ComboBoxItem)cmbUitgever.SelectedItem;
+                int IDuitgever = int.Parse(itm.Tag.ToString());
+                AddBook(titel, IDauteur, IDuitgever, jaartal);
+                dgBoek.ItemsSource = dsBoekenLijst.Tables[2].DefaultView;
+            }
+            catch (Exception ex) 
+            {
+                MessageBox.Show("Foute ingave\nReden:" + ex.Message);
+            }
         }
         private void btnVerwijderAuteur_Click(object sender, RoutedEventArgs e)
         {
