@@ -96,6 +96,9 @@ namespace DbBibliotheek.wpf
         }
         private void btnFilter_Click(object sender, RoutedEventArgs e)
         {
+            DataView sortedTable = new DataView(dtAuteur);
+            sortedTable.RowFilter = "AuteurNaam like 'T%'";
+            dgAuteur.ItemsSource = sortedTable;
         }
         private void btnToevoegen_Click(object sender, RoutedEventArgs e)
         {
