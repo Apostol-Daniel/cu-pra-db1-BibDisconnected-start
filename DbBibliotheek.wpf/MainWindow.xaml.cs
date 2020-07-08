@@ -79,7 +79,21 @@ namespace DbBibliotheek.wpf
             dtUitgever.Columns.Add(dcUitgeverNaam);
             dtUitgever.PrimaryKey = new DataColumn[] { dcUitgeverID };
 
-            
+            //create books
+
+            DataTable dtBoeken = new DataTable();
+            dtBoeken.TableName = "Boeken";
+            dsBoekenLijst.Tables.Add(dtBoeken);
+
+            DataColumn dcBoekID = new DataColumn();
+            dcBoekID.ColumnName = "boekID";
+            dcBoekID.DataType = typeof(int);
+            dcBoekID.AutoIncrement = true;
+            dcBoekID.AutoIncrementSeed = 1;
+            dcBoekID.AutoIncrementStep = 1;
+            dcBoekID.Unique = true;
+            dtBoeken.Columns.Add(dcBoekID);
+            dtBoeken.PrimaryKey = new DataColumn[] { dcBoekID };
 
 
 
