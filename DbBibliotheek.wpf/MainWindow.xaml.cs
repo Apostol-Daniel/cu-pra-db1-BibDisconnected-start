@@ -25,6 +25,7 @@ namespace DbBibliotheek.wpf
         DataSet dsBoekenLijst = new DataSet("Bibliotheek");
         private void MakeTables() 
         {
+            //create Auteur DataTable
             DataTable dtAuteur;
             dtAuteur = new DataTable();
             dsBoekenLijst.Tables.Add(dtAuteur);
@@ -54,6 +55,32 @@ namespace DbBibliotheek.wpf
             DataColumn dcDisplayAuteur = new DataColumn("DisplayAuteur");
             dcDisplayAuteur.Expression = "auteurNaam + ' (' + auteurID + ')'";
             dtAuteur.Columns.Add(dcDisplayAuteur);
+
+            //create Uitgever DataTable
+
+            DataTable dtUitgever = new DataTable();
+            dtUitgever.TableName = "Uitgever";
+            dsBoekenLijst.Tables.Add(dtUitgever);
+
+            DataColumn dcUitgeverID = new DataColumn();
+            dcUitgeverID.ColumnName = "uitgeverID";
+            dcUitgeverID.DataType = typeof(int);
+            dcUitgeverID.AutoIncrement = true;
+            dcUitgeverID.AutoIncrementSeed = 1;
+            dcUitgeverID.AutoIncrementStep = 1;
+            dcUitgeverID.Unique = true;
+
+            DataColumn dcUitgeverNaam = new DataColumn();
+            dcUitgeverID.ColumnName = "uitgeverNaam";
+            dcUitgeverID.DataType = typeof(string);
+            dcUitgeverID.MaxLength = 50;
+
+            dtUitgever.Columns.Add(dcUitgeverID);
+            dtUitgever.Columns.Add(dcUitgeverNaam);
+            dtUitgever.PrimaryKey = new DataColumn[] { dcUitgeverID };
+
+            
+
 
 
         }
