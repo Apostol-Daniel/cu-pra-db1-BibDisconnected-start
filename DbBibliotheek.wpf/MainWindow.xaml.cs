@@ -53,6 +53,18 @@ namespace DbBibliotheek.wpf
             dtAuteur.Columns.Add(dcAuteurNaam);
         }
 
+        private void FillTables() 
+        {
+            
+        }
+
+        private void AddAuteurData(string naam) 
+        {
+            DataRow nieuweAuteur = dtAuteur.NewRow();
+            nieuweAuteur["auteurNaam"] = naam;
+            dtAuteur.Rows.Add(nieuweAuteur);
+        }
+
 
 
 
@@ -65,7 +77,7 @@ namespace DbBibliotheek.wpf
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             MakeTables();
-            //FillTables();
+            FillTables();
         }
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
