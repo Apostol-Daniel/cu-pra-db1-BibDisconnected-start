@@ -22,10 +22,12 @@ namespace DbBibliotheek.wpf
     /// </summary>
     public partial class MainWindow : Window
     {
-
+        DataSet dsBoekenLijst = new DataSet("Bibliotheek");
         private void MakeTables() 
         {
+            DataTable dtAuteur;
             dtAuteur = new DataTable();
+            dsBoekenLijst.Tables.Add(dtAuteur);
             dtAuteur.TableName = "Auteur";
 
             DataColumn dcAuteurID = new DataColumn();
@@ -65,9 +67,9 @@ namespace DbBibliotheek.wpf
 
         private void AddAuteurData(string naam) 
         {
-            DataRow nieuweAuteur = dtAuteur.NewRow();
+            DataRow nieuweAuteur = dsBoekenLijst.Tables["Auteur"].NewRow();
             nieuweAuteur["auteurNaam"] = naam;
-            dtAuteur.Rows.Add(nieuweAuteur);
+            dsBoekenLijst.Tables["Auteur"].Rows.Add(nieuweAuteur);
         }
 
 
@@ -78,25 +80,25 @@ namespace DbBibliotheek.wpf
             InitializeComponent();
         }
 
-        DataTable dtAuteur;
+        
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             MakeTables();
             FillTables();
-            dgAuteur.ItemsSource = dtAuteur.DefaultView;
+            dgAuteur.ItemsSource = dsBoekenLijst.Tables["Auteur"].DefaultView;
         }
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
         }
         private void btnSorteer_Click(object sender, RoutedEventArgs e)
         {
-            DataView sortedTable = new DataView(dtAuteur);
+            DataView sortedTable = new DataView(dsBoekenLijst.Tables["Auteur"]);
             sortedTable.Sort = "AuteurNaam desc , AuteurID desc";
             dgAuteur.ItemsSource = sortedTable;
         }
         private void btnFilter_Click(object sender, RoutedEventArgs e)
         {
-            DataView sortedTable = new DataView(dtAuteur);
+            DataView sortedTable = new DataView(dsBoekenLijst.Tables["Auteur"]);
             sortedTable.RowFilter = "AuteurNaam like 'T%'";
             dgAuteur.ItemsSource = sortedTable;
         }
@@ -104,7 +106,7 @@ namespace DbBibliotheek.wpf
         {
             string auteur = txtAuteur.Text.Trim();
             AddAuteurData(auteur);
-            dgAuteur.ItemsSource = dtAuteur.DefaultView;
+            dgAuteur.ItemsSource = dsBoekenLijst.Tables["Auteur"].DefaultView;
         }
         private void btnBoekToevoegen_Click(object sender, RoutedEventArgs e)
         {
