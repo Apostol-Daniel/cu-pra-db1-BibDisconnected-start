@@ -109,6 +109,8 @@ namespace DbBibliotheek.wpf
             AddAuteurData("Boon Louis");
             AddAuteurData("Tuchman Barbara");
             AddAuteurData("Cook Robin");
+            AddPublisherData("AW Bruna");
+            AddPublisherData("Luttingh");
         }
 
         private void AddAuteurData(string naam) 
