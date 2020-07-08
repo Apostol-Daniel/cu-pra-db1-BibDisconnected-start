@@ -41,6 +41,11 @@ namespace DbBibliotheek.wpf
 
 
             DataColumn dcAuteurNaam = new DataColumn();
+
+            DataColumn dcDisplayAuteur = new DataColumn("DisplayAuteur");
+            dcDisplayAuteur.Expression = "auteurNaam + '('+ auteurID +')'";
+            dtAuteur.Columns.Add(dcDisplayAuteur);
+
             dcAuteurNaam.ColumnName = "auteurNaam";
             dcAuteurNaam.DataType = typeof(string);
             dcAuteurNaam.MaxLength = 50;
