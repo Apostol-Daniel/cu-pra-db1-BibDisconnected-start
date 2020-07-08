@@ -31,6 +31,9 @@ namespace DbBibliotheek.wpf
             DataColumn dcAuteurID = new DataColumn();
             dcAuteurID.ColumnName = "auteurID";
             dcAuteurID.DataType = typeof(int);
+            dcAuteurID.AutoIncrement = true;
+            dcAuteurID.AutoIncrementSeed = 1;
+            dcAuteurID.AutoIncrementStep = 1;
 
             dcAuteurID.Unique = true;
             dtAuteur.Columns.Add(dcAuteurID);
