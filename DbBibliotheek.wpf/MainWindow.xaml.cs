@@ -171,12 +171,29 @@ namespace DbBibliotheek.wpf
             InitializeComponent();
         }
 
+        private bool LeesXML() 
+        {
+            bool gelezen = false;
+            if (Directory.Exists(XMLMap)) 
+            {
+                if (File.Exists(XMLBestand))
+                {
+                    dsBoekenLijst.ReadXml(XMLBestand, XmlReadMode.ReadSchema);
+                    gelezen = true;
+                }
+            }
+            return gelezen;
+        }
         
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            MakeTables();
-            FillTables();
+            if (!LeesXML()) 
+            {
+                MakeTables();
+                FillTables();
+            }
             dgAuteur.ItemsSource = dsBoekenLijst.Tables["Auteur"].DefaultView;
+            dgBoek.ItemsSource = dsBoekenLijst.Tables[2].DefaultView;
             EditSourceData();
         }
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
