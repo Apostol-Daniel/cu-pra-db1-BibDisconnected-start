@@ -221,6 +221,19 @@ namespace DbBibliotheek.wpf
         {
             if (dgAuteur.SelectedIndex > -1) 
             {
+                string searchAuteurID = dgAuteur.SelectedValue.ToString();
+                foreach(DataRow row in dsBoekenLijst.Tables[0].Rows) 
+                {
+                    if(row["auteurID"].ToString()== searchAuteurID)
+                    {
+                        dsBoekenLijst.Tables[0].Rows.Remove(row);
+                        break;
+                    }
+                }
+
+                EditSourceData();
+                dgAuteur.ItemsSource = dsBoekenLijst.Tables[0].DefaultView;
+                dgBoek.ItemsSource = dsBoekenLijst.Tables[2].DefaultView;
             }
         }
 
