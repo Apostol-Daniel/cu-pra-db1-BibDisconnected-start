@@ -24,6 +24,8 @@ namespace DbBibliotheek.wpf
     public partial class MainWindow : Window
     {
         DataSet dsBoekenLijst = new DataSet("Bibliotheek");
+        string XMLMap = Directory.GetCurrentDirectory() + "/XMLBestanden";
+        string XMLBestand = Directory.GetCurrentDirectory() + "/XMLBestanden/boeken.xml";
         private void MakeTables() 
         {
             //create Auteur DataTable
@@ -179,6 +181,11 @@ namespace DbBibliotheek.wpf
         }
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
+            if (!Directory.Exists(XMLMap))
+                Directory.CreateDirectory(XMLMap);
+            if (File.Exists(XMLBestand))
+                File.Delete(XMLBestand);
+            dsBoekenLijst.WriteXml(XMLBestand, XmlWriteMode.WriteSchema);
         }
         private void btnSorteer_Click(object sender, RoutedEventArgs e)
         {
