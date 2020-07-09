@@ -72,9 +72,9 @@ namespace DbBibliotheek.wpf
             dcUitgeverID.Unique = true;
 
             DataColumn dcUitgeverNaam = new DataColumn();
-            dcUitgeverID.ColumnName = "uitgeverNaam";
-            dcUitgeverID.DataType = typeof(string);
-            dcUitgeverID.MaxLength = 50;
+            dcUitgeverNaam.ColumnName = "uitgeverNaam";
+            dcUitgeverNaam.DataType = typeof(string);
+            dcUitgeverNaam.MaxLength = 50;
 
             dtUitgever.Columns.Add(dcUitgeverID);
             dtUitgever.Columns.Add(dcUitgeverNaam);
@@ -136,8 +136,8 @@ namespace DbBibliotheek.wpf
             for (int counter = 0; counter < dsBoekenLijst.Tables[0].Rows.Count; counter++) 
             {
                 itm = new ComboBoxItem();
-                itm.Content = (dsBoekenLijst.Tables[0].Rows[counter][1]);
-                itm.Tag = (dsBoekenLijst.Tables[0].Rows[counter][0]);
+                itm.Content = dsBoekenLijst.Tables[0].Rows[counter][1];
+                itm.Tag = dsBoekenLijst.Tables[0].Rows[counter][0];
                 cmbAuteur.Items.Add(itm);
             }
             cmbAuteur.SelectedIndex = 0;
@@ -152,12 +152,12 @@ namespace DbBibliotheek.wpf
             cmbUitgever.SelectedIndex = 0;
         }
 
-        private void AddBook(string titel, int auteurID, int uitgverID, int jaartal) 
+        private void AddBook(string titel, int auteurID, int uitgeverID, int jaartal) 
         {
             DataRow newBook = dsBoekenLijst.Tables[2].NewRow();
             newBook["Titel"] = titel;
             newBook["AuteurID"] = auteurID;
-            newBook["UitgeverID"] = uitgverID;
+            newBook["UitgeverID"] = uitgeverID;
             newBook["Jaartal"] = jaartal;
             dsBoekenLijst.Tables[2].Rows.Add(newBook);
         }
