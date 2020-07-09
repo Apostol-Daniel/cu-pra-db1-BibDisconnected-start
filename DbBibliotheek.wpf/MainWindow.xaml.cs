@@ -102,7 +102,8 @@ namespace DbBibliotheek.wpf
             dtBoeken.Columns.Add("UitgeverID", typeof(int));
             dtBoeken.Columns.Add("Jaartal", typeof(int));
 
-
+            dsBoekenLijst.Relations.Add(dsBoekenLijst.Tables[0].Columns["AuteurID"],
+                dsBoekenLijst.Tables[2].Columns["AuteurID"]);
         }
 
         private void FillTables() 
